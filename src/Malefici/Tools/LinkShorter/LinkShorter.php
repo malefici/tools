@@ -1,14 +1,14 @@
 <?php
-/**
+/*
  * For the license information, please view the LICENSE.md
  * file that was distributed with this source code.
  */
 
-namespace Malefici;
+namespace Malefici\Tools\LinkShorter;
+
+use Malefici\Tools\LinkShorter\Exception\InvalidSymbolsStringException;
 
 /**
- * Class LinkShorter
- * 
  * This class can short your links. You can convert link ID from your database to short 
  * link and back.
  * 
@@ -16,7 +16,7 @@ namespace Malefici;
  * during application lifetime. Just be carefully.
  *
  * @author Malefici <sir.malefici@gmail.com>
- * @package Malefici
+ * @package Malefici\Tools\LinkShorter
  */
 class LinkShorter {
 
@@ -26,8 +26,8 @@ class LinkShorter {
     private $symbols = array();
 
     /**
-     * @param string $symbols
-     * @throws \Exception
+     * @param null|string $symbols
+     * @throws InvalidSymbolsStringException
      */
     public function __construct($symbols = null) {
         if(null === $symbols) {
@@ -37,7 +37,7 @@ class LinkShorter {
             
             // Let's validate digits string
             if(count(array_unique($symbols_array, \SORT_STRING)) != 62)
-                throw new \Exception('Symbols string should be of 64 unique symbols');
+                throw new InvalidSymbolsStringException();
 
             $this->symbols = $symbols_array;
         }
