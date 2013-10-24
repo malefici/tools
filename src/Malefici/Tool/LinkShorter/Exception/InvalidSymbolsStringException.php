@@ -13,8 +13,7 @@ namespace Malefici\Tool\LinkShorter\Exception;
  * @package Malefici\Tool\LinkShorter\Exception
  */
 class InvalidSymbolsStringException extends \Exception {
-    
     public function __construct($message = null, $code = 0, \Exception $previous = null, $path = null) {
-        parent::__construct('Symbols string should be of 62 unique symbols', $code, $previous, $path);
+        parent::__construct('Symbols string must contain only unique symbols', $code, $previous, $path);
     }
 } 

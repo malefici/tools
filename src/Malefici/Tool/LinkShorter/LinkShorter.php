@@ -19,6 +19,8 @@ use Malefici\Tool\LinkShorter\Exception\InvalidSymbolsStringException;
  * @package Malefici\Tool\LinkShorter
  */
 class LinkShorter {
+    
+    const ALL_DIGITS_AND_LETTERS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     /**
      * @var array
@@ -31,12 +33,11 @@ class LinkShorter {
      */
     public function __construct($symbols = null) {
         if(null === $symbols) {
-            $this->symbols = str_split('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+            $this->symbols = str_split(self::ALL_DIGITS_AND_LETTERS);
         } else {
             $symbols_array = str_split($symbols);
             
-            // Let's validate digits string
-            if(count(array_unique($symbols_array, \SORT_STRING)) != 62)
+            if(count(array_unique($symbols_array, \SORT_STRING)) != count($symbols_array))
                 throw new InvalidSymbolsStringException();
 
             $this->symbols = $symbols_array;
@@ -50,9 +51,9 @@ class LinkShorter {
     public function intToLink($number) {
         $link = '';
         while($number != 0) {
-            $digit = $number % 62;
+            $digit = $number % count($this->symbols);
             $link = $this->symbols[$digit] . $link;
-            $number = floor($number / 62);
+            $number = floor($number / count($this->symbols));
         }
         return $link;
     }
@@ -66,7 +67,7 @@ class LinkShorter {
         $number = 0;
         for($i = 0; $i < strlen($link); $i++) {
             $index = $link[(strlen($link) - $i - 1)];
-            $number += $symbols_array[$index] * pow(62, $i);
+            $number += $symbols_array[$index] * pow(count($this->symbols), $i);
         }
         return $number;
     }
