@@ -4,13 +4,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Malefici\Tools\LinkShorter\Exception;
+namespace Malefici\Tool\LinkShorter\Exception;
 
 /**
  * Exception class thrown when invalid symbols string given
  * 
  * @author Malefici <sir.malefici@gmail.com>
- * @package Malefici\Tools\LinkShorter\Exception
+ * @package Malefici\Tool\LinkShorter\Exception
  */
 class InvalidSymbolsStringException extends \Exception {
     
