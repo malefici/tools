@@ -7,6 +7,7 @@
 namespace Malefici\Tools\LinkShorter;
 
 use Malefici\Tools\LinkShorter\Exception\InvalidSymbolsStringException;
+use Malefici\Tools\LinkShorter\Exception\InvalidSymbolException;
 
 /**
  * This class can short your links. You can convert link ID from your database to short 
@@ -16,7 +17,6 @@ use Malefici\Tools\LinkShorter\Exception\InvalidSymbolsStringException;
  * during application lifetime. Just be carefully.
  *
  * @author Malefici <sir.malefici@gmail.com>
- * @package Malefici\Tools\LinkShorter
  */
 class LinkShorter {
     
@@ -29,6 +29,7 @@ class LinkShorter {
 
     /**
      * @param null|string $symbols
+     * 
      * @throws InvalidSymbolsStringException
      */
     public function __construct($symbols = null) {
@@ -46,6 +47,7 @@ class LinkShorter {
 
     /**
      * @param int $number
+     * 
      * @return string
      */
     public function intToLink($number) {
@@ -60,13 +62,21 @@ class LinkShorter {
 
     /**
      * @param string $link
+     * 
      * @return int
+     * 
+     * @throws InvalidSymbolException
      */
-    public function linkToInt($link) {
+    public function linkToInt($link) {        
         $symbols_array = array_flip($this->symbols);
         $number = 0;
         for($i = 0; $i < strlen($link); $i++) {
             $index = $link[(strlen($link) - $i - 1)];
+
+            if(!in_array($index, $this->symbols)) {
+                throw new InvalidSymbolException($index);
+            }
+            
             $number += $symbols_array[$index] * pow(count($this->symbols), $i);
         }
         return $number;
