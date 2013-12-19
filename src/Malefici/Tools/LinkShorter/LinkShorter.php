@@ -6,7 +6,7 @@
 
 namespace Malefici\Tools\LinkShorter;
 
-use Malefici\Tool\LinkShorter\Exception\InvalidSymbolsStringException;
+use Malefici\Tools\LinkShorter\Exception\InvalidSymbolsStringException;
 
 /**
  * This class can short your links. You can convert link ID from your database to short 
@@ -16,7 +16,7 @@ use Malefici\Tool\LinkShorter\Exception\InvalidSymbolsStringException;
  * during application lifetime. Just be carefully.
  *
  * @author Malefici <sir.malefici@gmail.com>
- * @package Malefici\Tool\LinkShorter
+ * @package Malefici\Tools\LinkShorter
  */
 class LinkShorter {
     
