@@ -6,7 +6,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Nikita Ushakov",
+            "name": "Malefici",
             "email": "sir.malefici@gmail.com",
             "homepage": "http://malefici.com"
         }
@@ -15,7 +15,9 @@
         "php": ">=5.3"
     },
     "autoload": {
-        "psr-0": { "Malefici\\": "src/" }
+        "psr-0": {
+            "Malefici\\": "src/"
+        }
     },
     "minimum-stability": "dev"
 }

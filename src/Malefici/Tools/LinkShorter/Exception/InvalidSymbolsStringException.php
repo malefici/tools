@@ -11,8 +11,10 @@ namespace Malefici\Tools\LinkShorter\Exception;
  * 
  * @author Malefici <sir.malefici@gmail.com>
  */
-class InvalidSymbolsStringException extends \Exception {
-    public function __construct() {
+class InvalidSymbolsStringException extends \Exception 
+{
+    public function __construct() 
+    {
         parent::__construct('Symbols string must contain only unique symbols');
     }
-} 
+}

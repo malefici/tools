@@ -18,7 +18,8 @@ use Malefici\Tools\LinkShorter\Exception\InvalidSymbolException;
  *
  * @author Malefici <sir.malefici@gmail.com>
  */
-class LinkShorter {
+class LinkShorter 
+{
     
     const ALL_DIGITS_AND_LETTERS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -32,7 +33,8 @@ class LinkShorter {
      * 
      * @throws InvalidSymbolsStringException
      */
-    public function __construct($symbols = null) {
+    public function __construct($symbols = null) 
+    {
         if(null === $symbols) {
             $this->symbols = str_split(self::ALL_DIGITS_AND_LETTERS);
         } else {
@@ -50,7 +52,8 @@ class LinkShorter {
      * 
      * @return string
      */
-    public function intToLink($number) {
+    public function intToLink($number) 
+    {
         $link = '';
         while($number != 0) {
             $digit = $number % count($this->symbols);
@@ -67,7 +70,8 @@ class LinkShorter {
      * 
      * @throws InvalidSymbolException
      */
-    public function linkToInt($link) {        
+    public function linkToInt($link) 
+    {        
         $symbols_array = array_flip($this->symbols);
         $number = 0;
         for($i = 0; $i < strlen($link); $i++) {

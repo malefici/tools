@@ -11,12 +11,13 @@ namespace Malefici\Tools\LinkShorter\Exception;
  *
  * @author Malefici <sir.malefici@gmail.com>
  */
-class InvalidSymbolException extends \Exception {
-
+class InvalidSymbolException extends \Exception 
+{
     /**
      * @param string $symbol
      */
-    public function __construct($symbol) {
+    public function __construct($symbol) 
+    {
         parent::__construct(sprintf('This symbol %s didn\'t exist in symbols collection for decoding', $symbol));
     }
 } 
